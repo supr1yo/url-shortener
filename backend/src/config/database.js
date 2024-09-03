@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
-const MONGODB_URI = process.env.MONGO_URI;
+const MONGODB_URI = process.env.MONGODB_URI;
 
 if (!MONGODB_URI) {
   throw new Error("Please define the MONGO_URI in .env file.");
@@ -16,4 +16,4 @@ async function database() {
   }
 }
 
-export default database;
+module.exports = database;
