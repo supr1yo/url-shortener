@@ -1,13 +1,16 @@
-import { Schema, model } from "mongoose";
+const { Schema, model } =require('mongoose');
 
-const urlSchema = new Schema({
-    id: id,
+const urlSchema = new Schema(
+  {
     baseUrl: String,
     shortUrl: String,
-}, {
+    expiresAt: Date,
+  },
+  {
     timestamps: true,
-});
+  }
+);
 
-const Url = model('Url', urlSchema);
+const Url = model("Url", urlSchema);
 
-export default Url;
+module.exports =  Url;
