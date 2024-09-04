@@ -2,8 +2,16 @@ const { Schema, model } =require('mongoose');
 
 const urlSchema = new Schema(
   {
-    baseUrl: String,
-    shortUrl: String,
+    url: {
+      type: String,
+      unique: true,
+      required: true
+    },
+    uid: {
+      type: String,
+      unique: true,
+      required: true
+    },
     expiresAt: Date,
   },
   {
