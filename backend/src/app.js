@@ -3,22 +3,22 @@ const dotenv = require('dotenv');
 dotenv.config();
 const database = require('./config/database');
 const Url = require('./models/URL');
+const generateShortUrl = require('./middleware/base62');
 
 const app = express();
 const PORT = 8080 || process.env.PORT;
 
-let shortUrl = 'test';
 app.use(express.json());
 
 // create short url
 app.post('/create', async (req, res) => {
-    const { baseUrl } = req.body;
+    const { url } = req.body;
 
     try {
         await database();
         const shortenUrl = new Url({
-            baseUrl,
-            shortUrl
+            url,
+            uid: generateShortUrl(url)
         });
         await shortenUrl.save();
 
@@ -29,8 +29,6 @@ app.post('/create', async (req, res) => {
     } catch (error) {
         console.log(error);
     }
-
-
     res.status(200).json({
         'Received': url
     });
@@ -38,13 +36,22 @@ app.post('/create', async (req, res) => {
 
 
 // returns main url
-app.get('/:id', (req, res) => {
-    const { id } = req.params;
-    res.status(201).json({
-        'ID': id
-    });
-});
+app.get('/:code', async(req, res) => {
+    const { code } = req.params;
 
+    try {
+        await database();
+        const data = await Url.findOne({
+            uid: code
+        });
+        res.status(201).json({
+            url: data.url
+        });
+    } catch (error) {
+        console.log(error);
+    }
+    
+});
 
 
 app.listen(PORT, () => {
