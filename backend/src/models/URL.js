@@ -1,18 +1,22 @@
-const { Schema, model } =require('mongoose');
+const { Schema, model } = require("mongoose");
 
 const urlSchema = new Schema(
   {
     url: {
       type: String,
       unique: true,
-      required: true
+      required: true,
     },
     uid: {
       type: String,
       unique: true,
-      required: true
+      required: true,
     },
-    expiresAt: Date,
+    createdAt: {
+      type: Date,
+      default: Date.now,
+      expires: "30d",
+    },
   },
   {
     timestamps: true,
@@ -21,4 +25,4 @@ const urlSchema = new Schema(
 
 const Url = model("Url", urlSchema);
 
-module.exports =  Url;
+module.exports = Url;
