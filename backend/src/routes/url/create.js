@@ -3,9 +3,16 @@ const router = express.Router();
 const database = require("../../config/database");
 const Url = require("../../models/URL");
 const generateShortUrl = require("../../utils/base62");
+const { isURL } = require('validator');
 
 router.post('', async(req, res) => {
-    const { url } = req.body;
+  const { url } = req.body;
+
+  if (!isURL(url)){
+    return res.status(500).json({
+      reason: 'Invalid url passed.'
+    });
+  }
 
   try {
     await database();
