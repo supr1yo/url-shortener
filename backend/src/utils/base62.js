@@ -1,6 +1,3 @@
-
-// base62.js
-
 // Define the Base62 characters
 const base62Chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
