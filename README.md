@@ -1,9 +1,8 @@
-# url-shortener
+# URL Shortener
 [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
 
-# URL Shortener
 
-A full-stack URL shortener application built with **React.js** for the frontend, **Express.js** for the backend, and **MongoDB** as the database.
+A simple full-stack URL shortener application.
 
 ## Features
 
