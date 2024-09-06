@@ -21,7 +21,7 @@ router.post('', async(req, res) => {
     });
     if (search) {
       res.status(201).json({
-        url: search.uid,
+        uid: search.uid,
       });
     } else {
       const data = await Url.create({
